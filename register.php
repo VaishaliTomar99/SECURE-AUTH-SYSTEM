@@ -14,6 +14,11 @@ if(isset($_POST['register'])){
 
     $confirmPassword = $_POST['confirm_password'];
 
+    $profilePic = $_FILES['profile_pic']['name'];
+    $tmpName = $_FILES['profile_pic']['tmp_name'];
+
+    move_uploaded_file($tmpName, "uploads/" . $profilePic);
+
     if($password != $confirmPassword){
 
         $message = "Passwords do not match ❌";
