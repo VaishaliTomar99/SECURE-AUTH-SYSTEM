@@ -17,8 +17,22 @@ if(isset($_POST['register'])){
     $profilePic = $_FILES['profile_pic']['name'];
     $tmpName = $_FILES['profile_pic']['tmp_name'];
 
-    move_uploaded_file($tmpName, "uploads/" . $profilePic);
+    $profilePic = time() . "_" . $_FILES['profile_pic']['name'];
 
+    $tmpName = $_FILES['profile_pic']['tmp_name'];
+
+    $uploadFolder = "uploads/";
+
+    $targetPath = $uploadFolder . basename($profilePic);
+
+    if(move_uploaded_file($tmpName, $targetPath)){
+
+    // upload success
+
+    }else{
+
+        die("Image Upload Failed ❌");
+    }
     if($password != $confirmPassword){
 
         $message = "Passwords do not match ❌";
@@ -155,7 +169,12 @@ a{
             placeholder="Password"
             required
         >
-
+        <input
+            type="file"
+            name="profile_pic"
+            class="form-control"
+            required
+        >
         <input
             type="password"
             name="confirm_password"
