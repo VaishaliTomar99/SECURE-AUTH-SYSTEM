@@ -37,8 +37,8 @@ if(isset($_POST['register'])){
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $insertQuery = "INSERT INTO users(fullname,email,password)
-                            VALUES('$fullname','$email','$hashedPassword')";
+            $insertQuery = "INSERT INTO users(fullname,email,password,profile_pic)
+                            VALUES('$fullname','$email','$hashedPassword','$profilePic')";
 
             if(mysqli_query($conn, $insertQuery)){
 
